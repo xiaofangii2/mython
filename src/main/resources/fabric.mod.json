@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "xfxzmod",
+  "id": "mython",
   "version": "${version}",
   "name": "XFXZ Mod",
   "description": "Python script runner for Minecraft 26.3",
@@ -9,7 +9,7 @@
   "environment": "server",
   "entrypoints": {
     "main": [
-      "com.xiaofang.xfxzmod.XfxzMod"
+      "com.xiaofang.mython.XfxzMod"
     ]
   },
   "depends": {

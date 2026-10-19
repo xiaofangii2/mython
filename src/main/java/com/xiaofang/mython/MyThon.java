@@ -1,4 +1,4 @@
-package com.xiaofang.xfxzmod;
+package com.xiaofang.mython;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -29,8 +29,8 @@ import java.util.zip.ZipFile;
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
-public class XfxzMod implements ModInitializer {
-    public static final String MOD_ID = "xfxzmod";
+public class MyThon implements ModInitializer {
+    public static final String MOD_ID = "mython";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     private static File pythonDir;
@@ -48,7 +48,7 @@ public class XfxzMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        pythonDir = new File("config/xfxzmod/python");
+        pythonDir = new File("config/mython/python");
         if (!pythonDir.exists()) pythonDir.mkdirs();
         activePlatformFile = new File(pythonDir, "active.txt");
 
@@ -56,14 +56,14 @@ public class XfxzMod implements ModInitializer {
             registerPythonCommand(dispatcher);
         });
 
-        LOGGER.info("xfxzmod 已初始化，使用 /python help 查看指令");
+        LOGGER.info("mython 已初始化，使用 /python help 查看指令");
     }
 
     private void registerPythonCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(literal("python")
                 .then(literal("help").executes(ctx -> sendHelp(ctx.getSource())))
                 .then(literal("version").executes(ctx -> {
-                    ctx.getSource().sendSuccess(() -> Component.literal("xfxzmod 1.0"), false);
+                    ctx.getSource().sendSuccess(() -> Component.literal("mython 1.0"), false);
                     return 1;
                 }))
                 .then(literal("set")
@@ -224,7 +224,7 @@ public class XfxzMod implements ModInitializer {
     }
 
     private int sendHelp(CommandSourceStack source) {
-        source.sendSuccess(() -> Component.literal("===== xfxzmod 帮助 ====="), false);
+        source.sendSuccess(() -> Component.literal("===== mython 帮助 ====="), false);
         source.sendSuccess(() -> Component.literal("/python set - 联网下载并选择平台"), false);
         source.sendSuccess(() -> Component.literal("/python py <文件名.py> - 执行脚本"), false);
         source.sendSuccess(() -> Component.literal("/python py <文件名.py> c [秒] - 循环执行"), false);
